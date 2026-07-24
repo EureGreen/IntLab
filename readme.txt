@@ -71,6 +71,13 @@ Swagger-документация будет доступна по адресу:
 ```
 http://127.0.0.1:8000/docs
 ```
+Основные ссылки:
+
+https://intlab.onrender.com/
+
+https://intlab.onrender.com/docs
+
+https://intlab.onrender.com/api/health
 
 ## 2. Стек технологий
 
