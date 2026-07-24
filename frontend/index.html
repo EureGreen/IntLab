@@ -4,11 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Backend AI Contact</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>AI Contact Form</title>
+
+    <link 
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
 
     <style>
+
         body {
             background: #f5f7fb;
         }
@@ -20,232 +24,428 @@
         .card {
             border: none;
             border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, .08);
+            box-shadow: 0 10px 30px rgba(0,0,0,.08);
         }
 
         footer {
-            color: #777;
-            font-size: 14px;
+            color:#777;
+            font-size:14px;
         }
+
     </style>
+
 </head>
+
 
 <body>
 
-    <div class="container py-5">
 
-        <div class="card p-4">
+<div class="container py-5">
 
-            <h2 class="text-center mb-3">
-                Backend AI Contact API
-            </h2>
 
-            <p class="text-center text-secondary">
-                Демонстрация REST API на FastAPI
-            </p>
+    <div class="card p-4">
 
-            <div id="status" class="alert alert-secondary text-center">
-                Проверка сервиса...
-            </div>
 
-            <form id="contactForm">
+        <h2 class="text-center mb-3">
+            AI Contact Form
+        </h2>
 
-                <div class="mb-3">
-                    <label class="form-label">Имя</label>
-                    <input id="name" class="form-control" required>
-                </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Email</label>
-                    <input id="email"
-                           type="email"
-                           class="form-control"
-                           required>
-                </div>
+        <p class="text-center text-secondary">
+            FastAPI + OpenRouter AI
+        </p>
 
-                <div class="mb-3">
-                    <label class="form-label">Телефон</label>
-                    <input id="phone"
-                           type="tel"
-                           class="form-control"
-                           pattern="^\+?[0-9]{10,15}$"
-                           title="Введите номер в формате +79999999999"
-                           required>
-                </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Комментарий</label>
-                    <textarea id="comment"
-                              class="form-control"
-                              rows="5"
-                              required></textarea>
-                </div>
 
-                <button class="btn btn-primary w-100" type="submit">
-                    Отправить
-                </button>
+        <div id="status"
+             class="alert alert-secondary text-center">
 
-            </form>
-
-            <div id="result" class="mt-4"></div>
+            Проверка сервера...
 
         </div>
 
-        <footer class="text-center mt-4">
-            FastAPI • OpenRouter AI • Gmail SMTP
-        </footer>
+
+
+        <form id="contactForm">
+
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Имя
+                </label>
+
+                <input 
+                    id="name"
+                    class="form-control"
+                    placeholder="Введите имя"
+                    required>
+
+            </div>
+
+
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Email
+                </label>
+
+                <input
+                    id="email"
+                    type="email"
+                    class="form-control"
+                    placeholder="example@mail.com"
+                    required>
+
+            </div>
+
+
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Телефон
+                </label>
+
+
+                <input
+                    id="phone"
+                    class="form-control"
+                    placeholder="+79999999999"
+                    pattern="^\+?[0-9]{10,15}$"
+                    required>
+
+            </div>
+
+
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Комментарий
+                </label>
+
+
+                <textarea
+                    id="comment"
+                    class="form-control"
+                    rows="5"
+                    placeholder="Опишите ваш запрос"
+                    required></textarea>
+
+
+            </div>
+
+
+
+            <button
+                class="btn btn-primary w-100">
+
+                Отправить
+
+            </button>
+
+
+        </form>
+
+
+
+        <div id="result"
+             class="mt-4">
+        </div>
+
 
     </div>
 
-    <script>
 
-        const API = "http://127.0.0.1:8000";
 
-        async function checkHealth() {
+    <footer class="text-center mt-4">
 
-            try {
+        FastAPI | OpenRouter AI | Gmail SMTP
 
-                const response = await fetch(API + "/api/health");
+    </footer>
 
-                const status = document.getElementById("status");
 
-                if (response.ok) {
+</div>
 
-                    status.className = "alert alert-success";
-                    status.innerHTML = "🟢 API работает";
 
-                } else {
 
-                    status.className = "alert alert-danger";
-                    status.innerHTML = "🔴 API недоступно";
 
-                }
 
-            } catch {
+<script>
 
-                const status = document.getElementById("status");
 
-                status.className = "alert alert-danger";
-                status.innerHTML = "🔴 Не удалось подключиться к серверу";
+// Render API
+const API = "https://intlab.onrender.com";
 
-            }
+
+
+
+
+async function checkHealth(){
+
+
+    const status = document.getElementById("status");
+
+
+    try{
+
+
+        const response = await fetch(
+            API + "/api/health"
+        );
+
+
+        if(response.ok){
+
+
+            status.className =
+                "alert alert-success text-center";
+
+
+            status.innerHTML =
+                "API работает";
+
+
+        }
+        else{
+
+
+            status.className =
+                "alert alert-danger text-center";
+
+
+            status.innerHTML =
+                "API недоступно";
+
 
         }
 
-        document
+
+    }
+    catch(error){
+
+
+        status.className =
+            "alert alert-danger text-center";
+
+
+        status.innerHTML =
+            "Не удалось подключиться к серверу";
+
+
+    }
+
+
+}
+
+
+
+
+
+document
+.getElementById("contactForm")
+.addEventListener(
+"submit",
+async function(e){
+
+
+    e.preventDefault();
+
+
+
+    const result =
+        document.getElementById("result");
+
+
+
+    const data = {
+
+
+        name:
+        document.getElementById("name").value,
+
+
+        email:
+        document.getElementById("email").value,
+
+
+        phone:
+        document.getElementById("phone").value,
+
+
+        comment:
+        document.getElementById("comment").value
+
+
+    };
+
+
+
+    try{
+
+
+        const response = await fetch(
+
+            API + "/api/contact",
+
+            {
+
+                method:"POST",
+
+                headers:{
+
+                    "Content-Type":
+                    "application/json"
+
+                },
+
+
+                body:
+                JSON.stringify(data)
+
+            }
+
+        );
+
+
+
+
+        if(response.status === 201){
+
+
+            result.innerHTML = `
+
+            <div class="alert alert-success">
+
+            Сообщение успешно отправлено.
+
+            </div>
+
+            `;
+
+
+            document
             .getElementById("contactForm")
-            .addEventListener("submit", async (e) => {
+            .reset();
 
-                e.preventDefault();
 
-                const body = {
+            return;
 
-                    name: document.getElementById("name").value,
 
-                    email: document.getElementById("email").value,
+        }
 
-                    phone: document.getElementById("phone").value,
 
-                    comment: document.getElementById("comment").value
 
-                };
 
-                const response = await fetch(API + "/api/contact", {
+        if(response.status === 429){
 
-                    method: "POST",
 
-                    headers: {
+            result.innerHTML = `
 
-                        "Content-Type": "application/json"
+            <div class="alert alert-warning">
 
-                    },
+            Слишком много запросов.
 
-                    body: JSON.stringify(body)
+            Попробуйте позже.
 
-                });
+            </div>
 
-                const result = document.getElementById("result");
+            `;
 
-                if (response.status === 201) {
 
-                    result.innerHTML = `
-                        <div class="alert alert-success">
-                            Сообщение успешно отправлено.
-                        </div>
-                    `;
+            return;
 
-                    document.getElementById("contactForm").reset();
+        }
 
-                }
 
-                else if (response.status === 429) {
 
-                    result.innerHTML = `
-                        <div class="alert alert-danger">
-                            Слишком много запросов. Попробуйте позже.
-                        </div>
-                    `;
 
-                }
 
-                else {
+        const error =
+            await response.json();
 
-                    const error = await response.json();
 
-                    let message = "Произошла ошибка.";
 
-                    if (Array.isArray(error.detail)) {
+        let message =
+            "Ошибка отправки";
 
-                        message = "";
 
-                        error.detail.forEach(item => {
 
-                            switch (item.loc[item.loc.length - 1]) {
 
-                                case "name":
-                                    message += "Введите имя.<br>";
-                                    break;
+        if(Array.isArray(error.detail)){
 
-                                case "email":
-                                    message += "Некорректный адрес электронной почты.<br>";
-                                    break;
 
-                                case "phone":
-                                    message += "Некорректный номер телефона.<br>";
-                                    break;
+            message =
+            error.detail
+            .map(
+                e => e.msg
+            )
+            .join("<br>");
 
-                                case "comment":
-                                    message += "Введите комментарий.<br>";
-                                    break;
 
-                                default:
-                                    message += item.msg + "<br>";
+        }
 
-                            }
 
-                        });
+        else if(error.detail){
 
-                    }
 
-                    else if (typeof error.detail === "string") {
+            message =
+            error.detail;
 
-                        message = error.detail;
 
-                    }
+        }
 
-                    result.innerHTML = `
-                        <div class="alert alert-danger">
-                            ${message}
-                        </div>
-                    `;
 
-                }
 
-            });
 
-        checkHealth();
 
-    </script>
+        result.innerHTML = `
+
+        <div class="alert alert-danger">
+
+        ${message}
+
+        </div>
+
+        `;
+
+
+
+    }
+
+    catch(error){
+
+
+        result.innerHTML = `
+
+        <div class="alert alert-danger">
+
+        Сервер недоступен.
+
+        </div>
+
+        `;
+
+
+    }
+
+
+
+});
+
+
+
+
+
+checkHealth();
+
+
+
+</script>
+
+
 
 </body>
 
