@@ -1,0 +1,128 @@
+{
+  "info": {
+    "_postman_id": "e2b9f6ef-89e7-4d11-b54b-0db85e65d8a2",
+    "name": "Backend AI Contact API",
+    "description": "Коллекция для тестирования Backend AI Contact API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8000"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/health",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "health"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Metrics",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/metrics",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "metrics"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Create Contact",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\": \"Erik\",\n    \"email\": \"test@example.com\",\n    \"phone\": \"+79999999999\",\n    \"comment\": \"Хочу заказать разработку интернет-магазина с оплатой картой и личным кабинетом.\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/contact",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "contact"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Validation Error",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\": \"\",\n    \"email\": \"not-email\",\n    \"phone\": \"123\",\n    \"comment\": \"\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/contact",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "contact"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Spam Test (Rate Limit)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\": \"Spam User\",\n    \"email\": \"spam@example.com\",\n    \"phone\": \"+79999999999\",\n    \"comment\": \"Spam request\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/contact",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "contact"
+          ]
+        }
+      }
+    }
+  ]
+}
